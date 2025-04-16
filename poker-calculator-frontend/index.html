@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Póker v3.1 (Pot Odds)</title> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Probabilidades de Póker (con Posiciones)</h1>
+
+        <div class="button-group top-buttons">
+             <button onclick="addOpponent()">Agregar Oponente</button>
+        </div>
+
+        <div id="hero-section" class="player hero">
+             <label>Héroe (Tus Cartas):</label>
+             <div class="player-controls">
+                 <div class="card-selectors-container">
+                     <select id="hero-card-1" class="card-select hero-select" onchange="updateCardDisplay(this, 'hero-display', 0)"></select>
+                     <select id="hero-card-2" class="card-select hero-select" onchange="updateCardDisplay(this, 'hero-display', 1)"></select>
+                 </div>
+                 <div class="position-selector-container">
+                      <label for="hero-position" class="inline-label">Posición:</label>
+                      <select id="hero-position" class="position-select hero-position-select"></select>
+                 </div>
+             </div>
+             <div id="hero-display" class="card-display">
+                 <img src="cards/blank.png" alt="Carta 1" class="card-image-placeholder">
+                 <img src="cards/blank.png" alt="Carta 2" class="card-image-placeholder">
+             </div>
+        </div>
+
+        <div id="opponents"></div>
+
+        <div class="community-cards player">
+             <div class="game-stage">
+                 <label for="gameStage">Etapa del juego:</label>
+                 <select id="gameStage" onchange="updateCommunityCardSelectors()">
+                     <option value="preflop">Preflop (0)</option>
+                     <option value="flop" selected>Flop (3)</option>
+                     <option value="turn">Turn (4)</option>
+                     <option value="river">River (5)</option>
+                 </select>
+            </div>
+             <label>Cartas comunitarias:</label>
+             <div id="community-card-selectors" class="card-selectors-container">
+                 <select id="community-card-1" class="card-select community-select" onchange="updateCardDisplay(this, 'communityCardDisplay', 0)"></select>
+                 <select id="community-card-2" class="card-select community-select" onchange="updateCardDisplay(this, 'communityCardDisplay', 1)"></select>
+                 <select id="community-card-3" class="card-select community-select" onchange="updateCardDisplay(this, 'communityCardDisplay', 2)"></select>
+                 <select id="community-card-4" class="card-select community-select" onchange="updateCardDisplay(this, 'communityCardDisplay', 3)"></select>
+                 <select id="community-card-5" class="card-select community-select" onchange="updateCardDisplay(this, 'communityCardDisplay', 4)"></select>
+             </div>
+             <div id="communityCardDisplay" class="card-display"></div>
+        </div>
+
+        <div class="pot-odds-section player">
+            <label>Calcular Pot Odds (Opcional):</label>
+            <div class="pot-odds-inputs">
+                 <div>
+                     <label for="potSize" class="inline-label">Tamaño del Bote (antes de la apuesta a igualar):</label>
+                     <input type="number" id="potSize" min="0" step="0.01" placeholder="Ej: 100">
+                 </div>
+                 <div>
+                      <label for="amountToCall" class="inline-label">Cantidad a Igualar:</label>
+                      <input type="number" id="amountToCall" min="0" step="0.01" placeholder="Ej: 50">
+                 </div>
+            </div>
+             </div>
+        <div class="button-group main-buttons">
+             <button onclick="calculate()">Calcular</button>
+             <button onclick="clearFields()" class="clear-button">Limpiar</button>
+         </div>
+
+        <div id="results" class="results"></div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

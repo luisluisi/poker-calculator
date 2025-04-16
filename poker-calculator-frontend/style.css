@@ -1,0 +1,94 @@
+/* --- Estilos Base y Originales --- */
+body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 10px; /* Menos padding base para móvil */ background: linear-gradient(135deg, #e0eafc, #cfdef3); color: #333; font-size: 16px; /* Tamaño base */}
+.container { max-width: 900px; margin: 10px auto; background: #ffffff; padding: 15px; /* Menos padding interno */ border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+h1 { text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 1.8rem; /* Más pequeño por defecto */ font-weight: 600; }
+.game-stage { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.game-stage label { font-weight: bold; font-size: 0.95rem; color: #34495e; margin-bottom: 0; } /* Label más pequeño */
+.game-stage select { padding: 10px 12px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc; background-color: #f9f9f9; cursor: pointer; flex: 1; min-width: 150px; }
+.player { margin-bottom: 15px; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.player:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+label { display: block; margin: 8px 0 5px; font-weight: bold; font-size: 1rem; color: #34495e; }
+button { padding: 12px 20px; /* Más padding vertical */ margin: 5px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; width: 100%; /* Botones ocupan ancho por defecto en móvil */ box-sizing: border-box; }
+button:hover { background-color: #0056b3; transform: translateY(-2px); }
+.button-group { display: flex; flex-direction: column; /* Apilados por defecto */ gap: 10px; margin-top: 15px; flex-wrap: wrap; align-items: stretch;}
+.button-group.top-buttons { flex-direction: row; /* Fila si caben */ justify-content: space-around; } /* Botones superiores lado a lado */
+.button-group.top-buttons button { width: auto; flex: 1; } /* Que se ajusten */
+.button-group.main-buttons { /* Botones principales siempre apilados */ flex-direction: column; }
+.button-group button.clear-button { background-color: #6c757d; }
+.button-group button.clear-button:hover { background-color: #5a6268; }
+#results { margin-top: 20px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9; font-size: 1rem; line-height: 1.5; opacity: 0; transition: opacity 0.3s ease; min-height: 40px; }
+#results.visible { opacity: 1; }
+#results h3 { margin-top: 0; color: #007bff; font-size: 1.3rem; font-weight: 600; border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 10px; }
+#results p { margin: 8px 0; padding: 10px 12px; border-left: 4px solid #007bff; background-color: #e9f5ff; border-radius: 3px; transition: background-color 0.2s ease; }
+#results p:hover { background-color: #d6eaff; }
+#results p.calculating { border-left-color: #ffc107; background-color: #fff8e1; font-style: italic; }
+#results p.error { border-left-color: #dc3545; background-color: #f8d7da; color: #721c24; font-weight: bold; }
+
+/* --- Estilo para el display de cartas (Mobile First) --- */
+.card-display { display: flex; gap: 5px; /* Menos espacio */ margin-top: 8px; margin-bottom: 5px; flex-wrap: wrap; min-height: 75px; /* Ajustar a nueva altura de carta */ align-items: center; }
+.card-display img { width: 48px; /* Tamaño por defecto más pequeño */ height: 73px; /* Altura proporcional */ max-width: 48px; object-fit: contain; border: 1px solid #ccc; border-radius: 4px; /* Menos radio */ box-shadow: 0 1px 3px rgba(0,0,0,0.1); background-color: white; transition: transform 0.2s ease; vertical-align: middle; }
+.card-display img:hover { transform: scale(1.08); }
+.card-display img.card-image-placeholder { opacity: 0.5; box-shadow: none; border-style: dashed; }
+.card-display span.error-msg { color: #dc3545; font-size: 0.9rem; font-weight: bold; padding: 0 3px; align-self: center; margin: 0 3px; }
+
+/* --- Estilos para Selects (Mobile First) --- */
+.card-selectors-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.card-select { padding: 10px 12px; /* Más padding táctil */ font-size: 1rem; border-radius: 5px; border: 1px solid #ccc; background-color: #fff; cursor: pointer; min-width: calc(50% - 4px); /* 2 por línea por defecto */ flex-grow: 1; /* Permitir crecer */ appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 10px top 50%; background-size: .65em auto; transition: border-color 0.2s ease; box-sizing: border-box; /* Incluir padding en ancho */ }
+.card-select:focus { outline: none; border-color: #007bff; box-shadow: 0 0 5px rgba(0,123,255,0.3); }
+.card-select:disabled { background-color: #e9ecef; cursor: not-allowed; opacity: 0.7; }
+.hidden-select { display: none; }
+#community-card-selectors .card-select { min-width: calc(33% - 6px); /* Intentar 3 por línea para comunitarias */ }
+
+/* --- Estilos Héroe/Oponentes y Pot Odds (Mobile First) --- */
+.player-controls { display: flex; flex-direction: column; /* Apilado por defecto */ align-items: stretch; /* Ocupar ancho */ gap: 10px; margin-bottom: 10px; }
+.player-controls .card-selectors-container { flex-grow: 1; margin-bottom: 0; }
+.position-selector-container { display: flex; align-items: center; gap: 5px; justify-content: flex-start; }
+.position-selector-container .inline-label { margin: 0; font-size: 0.95rem; white-space: nowrap; }
+.position-select { padding: 10px 8px; font-size: 0.95rem; border-radius: 5px; border: 1px solid #ccc; background-color: #fff; cursor: pointer; min-width: 100px; max-width: 180px; /* Limitar ancho */ }
+.player.hero { border-left: 5px solid #007bff; background-color: #f0f8ff; }
+.opponent-label { font-weight: bold; margin-bottom: 5px; display: block; color: #34495e; font-size: 0.95rem; }
+.opponent-display { display: flex; align-items: center; gap: 10px; padding: 8px; background-color: #f1f3f5; border-radius: 5px; }
+.pot-odds-section { border-top: 2px dashed #007bff; padding-top: 15px; margin-top: 20px; }
+.pot-odds-section > label { font-size: 1.1rem; color: #0056b3; margin-bottom: 15px; }
+.pot-odds-inputs { display: flex; flex-direction: column; /* Apilado por defecto */ gap: 15px; align-items: stretch; }
+.pot-odds-inputs > div { display: flex; flex-direction: column; gap: 5px; }
+.pot-odds-inputs label.inline-label { display: block; /* Separar label */ font-size: 0.9rem; font-weight: normal; color: #555; }
+.pot-odds-inputs input[type="number"] { padding: 10px 12px; width: 100%; /* Ancho completo */ max-width: none; margin-bottom: 0; font-size: 1rem; box-sizing: border-box; }
+#potOddsInfo { margin-top: 15px; padding: 10px; background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 0.95rem; color: #856404; }
+#potOddsInfo strong { font-weight: 600; } #potOddsInfo span.positive { color: #155724; font-weight: bold; } #potOddsInfo span.negative { color: #721c24; font-weight: bold; }
+
+/* --- Media Queries para Pantallas Más Grandes --- */
+
+/* Tablets y Desktops Pequeños */
+@media (min-width: 600px) {
+    body { padding: 20px; font-size: 16px; }
+    .container { padding: 25px; margin: 20px auto; }
+    h1 { font-size: 2.2rem; }
+    button { width: auto; } /* Botones no ocupan todo el ancho */
+    .button-group { flex-direction: row; } /* Botones en fila */
+    .button-group.top-buttons button { flex: 0 1 auto; } /* No crecer tanto */
+    .card-display img { width: 55px; height: 84px; max-width: 55px; } /* Cartas un poco más grandes */
+    .card-display { min-height: 90px; }
+    .card-select { min-width: 90px; }
+    #community-card-selectors .card-select { min-width: calc(20% - 8px); } /* Intentar 5 por línea */
+    .player-controls { flex-direction: row; align-items: center; } /* Controles de jugador en fila */
+    .position-select { max-width: 120px; }
+    .pot-odds-inputs { flex-direction: row; align-items: flex-end; } /* Inputs pot odds en fila */
+    .pot-odds-inputs input[type="number"] { max-width: 180px; }
+    #results { font-size: 1.05rem; }
+    #results h3 { font-size: 1.4rem; }
+}
+
+/* Desktops Grandes */
+@media (min-width: 992px) {
+     .container { padding: 30px; }
+     h1 { font-size: 2.4rem; }
+     .card-display img { width: 60px; height: 90px; max-width: 60px; } /* Tamaño original */
+     .card-display { min-height: 95px; }
+     .card-select { min-width: 100px; }
+     #community-card-selectors .card-select { min-width: calc(20% - 8px); }
+     .position-select { min-width: 90px; max-width: 150px; }
+     .pot-odds-inputs input[type="number"] { max-width: 200px; }
+     #results { font-size: 1.1rem; }
+     #results h3 { font-size: 1.5rem; }
+}
